@@ -16,22 +16,24 @@ defmodule Rockelivery.DataCase do
 
   use ExUnit.CaseTemplate
 
+  alias Ecto.Adapters.SQL.Sandbox
+  alias Ecto.Changeset
+
   using do
     quote do
       alias Rockelivery.Repo
 
       import Ecto
-      import Ecto.Changeset
-      import Ecto.Query
+      import Ecto.{Changeset, Query}
       import Rockelivery.DataCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Rockelivery.Repo)
+    :ok = Sandbox.checkout(Rockelivery.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Rockelivery.Repo, {:shared, self()})
+      Sandbox.mode(Rockelivery.Repo, {:shared, self()})
     end
 
     :ok
@@ -46,7 +48,7 @@ defmodule Rockelivery.DataCase do
 
   """
   def errors_on(changeset) do
-    Ecto.Changeset.traverse_errors(changeset, fn {message, opts} ->
+    Changeset.traverse_errors(changeset, fn {message, opts} ->
       Regex.replace(~r"%{(\w+)}", message, fn _, key ->
         opts |> Keyword.get(String.to_existing_atom(key), key) |> to_string()
       end)
