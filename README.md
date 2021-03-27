@@ -1,19 +1,25 @@
 # Rockelivery
 
-To start your Phoenix server:
+[![Language](https://img.shields.io/badge/language-elixir-purple)](https://img.shields.io/badge/language-elixir-purple) [![License](https://img.shields.io/badge/license-MIT-lightgrey)](/LICENSE)
+
+Repository for my Rockelivery project of the Elixir's path from [Rocketseat Ignite](https://rocketseat.com.br).
+
+## :rocket: Techs
+
+* [Elixir](https://elixir-lang.org/)
+
+## :wrench: Setup
 
   * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Start Phoenix endpoint with `mix phx.server`
+  * For interactive testing use `iex -S mix`
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+## :white_check_mark: Test
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+To run tests:
 
-## Learn more
+* Run with `mix test --cover`
+* Run with `mix coveralls.html` to generate HTML report
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+## :page_facing_up: License
+
+* [MIT](/LICENSE.txt)
