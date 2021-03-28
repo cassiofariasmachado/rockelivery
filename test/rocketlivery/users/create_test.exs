@@ -1,10 +1,10 @@
 defmodule Rockelivery.Users.CreateTest do
   use Rockelivery.DataCase, async: true
 
+  import Rockelivery.Factory
+
   alias Rockelivery.{Error, User}
   alias Rockelivery.Users.Create
-
-  import Rockelivery.Factory
 
   describe "call/1" do
     test "when all params are valid, returns the user" do

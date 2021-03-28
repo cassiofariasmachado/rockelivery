@@ -15,7 +15,7 @@ defmodule RockeliveryWeb.Plugs.UUIDChecker do
 
   def call(conn, _options), do: conn
 
-  def render_error(conn) do
+  defp render_error(conn) do
     body = Jason.encode!(%{message: "Invalid id format"})
 
     conn
