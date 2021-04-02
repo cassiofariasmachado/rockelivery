@@ -1,16 +1,17 @@
 defmodule Rockelivery.Users.Create do
   alias Rockelivery.{Error, Repo, User}
+  alias Rockelivery.ViaCep.Client
 
-  def call(params) do
-    params
-    |> User.changeset()
-    |> Repo.insert()
-    |> handle_insert()
-  end
+  def call(%{"cep" => cep} = params) do
+    changeset = User.changeset(params)
 
-  defp handle_insert({:ok, %User{}} = message), do: message
-
-  defp handle_insert({:error, message}) do
-    {:error, Error.build(:bad_request, message)}
+    with {:ok, %User{}} <- User.build(changeset),
+         {:ok, _cep_info} <- Client.get_cep_info(cep),
+         {:ok, %User{}} = user <- Repo.insert(changeset) do
+      user
+    else
+      {:error, %Error{}} = error -> error
+      {:error, reason} -> {:error, Error.build_bad_request(reason)}
+    end
   end
 end

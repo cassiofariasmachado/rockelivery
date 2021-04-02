@@ -10,7 +10,5 @@ defmodule Rockelivery.Items.Create do
 
   defp handle_insert({:ok, %Item{}} = message), do: message
 
-  defp handle_insert({:error, message}) do
-    {:error, Error.build(:bad_request, message)}
-  end
+  defp handle_insert({:error, message}), do: {:error, Error.build_bad_request(message)}
 end
