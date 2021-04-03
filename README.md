@@ -1,12 +1,14 @@
 # Rockelivery
 
-[![Language](https://img.shields.io/badge/language-elixir-purple)](https://img.shields.io/badge/language-elixir-purple) [![License](https://img.shields.io/badge/license-MIT-lightgrey)](/LICENSE)
+[![Language](https://img.shields.io/badge/language-elixir-purple)](https://img.shields.io/badge/language-elixir-purple) [![Platform](https://img.shields.io/badge/platform-api-blueviolet)](https://img.shields.io/badge/platform-api-blueviolet) [![License](https://img.shields.io/badge/license-MIT-lightgrey)](/LICENSE)
 
 Repository for my Rockelivery project of the Elixir's path from [Rocketseat Ignite](https://rocketseat.com.br).
 
 ## :rocket: Techs
 
 * [Elixir](https://elixir-lang.org/)
+* [Phoenix](https://www.phoenixframework.org/)
+* [Ecto](https://hexdocs.pm/ecto/Ecto.html)
 
 ## :wrench: Setup
 
