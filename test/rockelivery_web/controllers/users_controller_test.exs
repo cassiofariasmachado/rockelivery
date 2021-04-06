@@ -3,6 +3,7 @@ defmodule RockeliveryWeb.UsersControllerTest do
 
   import Mox
   import Rockelivery.Factory
+  import Rockelivery.Support
 
   alias Rockelivery.ViaCep.ClientMock
 
@@ -58,14 +59,23 @@ defmodule RockeliveryWeb.UsersControllerTest do
   end
 
   describe "delete/2" do
-    test "when there is a user with the given id, deletes the user", %{conn: conn} do
+    setup %{conn: conn} do
       id = "b2123402-8208-4ab0-a94a-47dc071f6658"
 
-      insert(:user, id: id)
+      user = insert(:user, id: id)
 
+      conn = puth_auth_header(conn, user)
+
+      {:ok, conn: conn, user_id: id}
+    end
+
+    test "when there is a user with the given id, deletes the user", %{
+      conn: conn,
+      user_id: user_id
+    } do
       response =
         conn
-        |> delete(Routes.users_path(conn, :delete, id))
+        |> delete(Routes.users_path(conn, :delete, user_id))
         |> response(:no_content)
 
       assert "" == response
@@ -99,19 +109,28 @@ defmodule RockeliveryWeb.UsersControllerTest do
   end
 
   describe "show/2" do
-    test "when there is a user with the given id, returns the user", %{conn: conn} do
+    setup %{conn: conn} do
       id = "d96f3230-5a00-4d35-907f-cc0fce7739c0"
 
-      insert(:user, id: id)
+      user = insert(:user, id: id)
 
+      conn = puth_auth_header(conn, user)
+
+      {:ok, conn: conn, user_id: id}
+    end
+
+    test "when there is a user with the given id, returns the user", %{
+      conn: conn,
+      user_id: user_id
+    } do
       response =
         conn
-        |> get(Routes.users_path(conn, :show, id))
+        |> get(Routes.users_path(conn, :show, user_id))
         |> json_response(:ok)
 
       expected_response = %{
         "user" => %{
-          "id" => id,
+          "id" => user_id,
           "name" => "Cassio",
           "email" => "cassio@email.com",
           "cpf" => "12345678910",
@@ -152,23 +171,32 @@ defmodule RockeliveryWeb.UsersControllerTest do
   end
 
   describe "update/2" do
-    test "when there is a user with the given id, updates the user", %{conn: conn} do
+    setup %{conn: conn} do
       id = "18ad3c36-3af6-47ed-9c02-0821af330673"
 
-      insert(:user, id: id)
+      user = insert(:user, id: id)
 
+      conn = puth_auth_header(conn, user)
+
+      {:ok, conn: conn, user_id: id}
+    end
+
+    test "when there is a user with the given id, updates the user", %{
+      conn: conn,
+      user_id: user_id
+    } do
       params = %{
         "name" => "Cassio Machado"
       }
 
       response =
         conn
-        |> put(Routes.users_path(conn, :update, id, params))
+        |> put(Routes.users_path(conn, :update, user_id, params))
         |> json_response(:ok)
 
       expected_response = %{
         "user" => %{
-          "id" => id,
+          "id" => user_id,
           "name" => "Cassio Machado",
           "email" => "cassio@email.com",
           "cpf" => "12345678910",
@@ -181,18 +209,14 @@ defmodule RockeliveryWeb.UsersControllerTest do
       assert expected_response == response
     end
 
-    test "when there are invalid params, returns an error", %{conn: conn} do
-      id = "ec8a85c6-6c9e-4a04-927c-d6ede4a973dd"
-
-      insert(:user, id: id)
-
+    test "when there are invalid params, returns an error", %{conn: conn, user_id: user_id} do
       params = %{
         "name" => ""
       }
 
       response =
         conn
-        |> put(Routes.users_path(conn, :update, id, params))
+        |> put(Routes.users_path(conn, :update, user_id, params))
         |> json_response(:bad_request)
 
       expected_response = %{"message" => %{"name" => ["can't be blank"]}}
