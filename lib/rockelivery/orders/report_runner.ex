@@ -1,9 +1,9 @@
 defmodule Rockelivery.Orders.ReportRunner do
   use GenServer
 
-  require Logger
-
   alias Rockelivery.Orders.Report
+
+  require Logger
 
   def start_link(_initial_state) do
     GenServer.start_link(__MODULE__, %{})

@@ -1,13 +1,13 @@
 defmodule Rockelivery.Orders.Report do
   import Ecto.Query
 
-  alias Rockelivery.{Order, Item, Repo}
+  alias Rockelivery.{Item, Order, Repo}
   alias Rockelivery.Orders.TotalPrice
 
   @default_block_size 500
 
   def create(file_name \\ "report.csv") do
-    query = from order in Order, order_by: order.user_id
+    query = from(order in Order, order_by: order.user_id)
 
     {:ok, order_list} =
       Repo.transaction(

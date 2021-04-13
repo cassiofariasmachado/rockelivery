@@ -22,8 +22,7 @@ config :rockelivery, RockeliveryWeb.Auth.Pipeline,
   module: RockeliveryWeb.Auth.Guardian,
   error_handler: RockeliveryWeb.Auth.ErrorHandler
 
-config :rockelivery, Rockelivery.ViaCep,
-  via_cep_adapter: Rockelivery.ViaCep.Client
+config :rockelivery, Rockelivery.ViaCep, via_cep_adapter: Rockelivery.ViaCep.Client
 
 # Configures the endpoint
 config :rockelivery, RockeliveryWeb.Endpoint,

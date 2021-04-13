@@ -1,6 +1,6 @@
 # Rockelivery
 
-[![Language](https://img.shields.io/badge/language-elixir-purple)](https://img.shields.io/badge/language-elixir-purple) [![Platform](https://img.shields.io/badge/platform-api-blueviolet)](https://img.shields.io/badge/platform-api-blueviolet) [![License](https://img.shields.io/badge/license-MIT-lightgrey)](/LICENSE)
+[![Language](https://img.shields.io/badge/language-elixir-purple)](https://img.shields.io/badge/language-elixir-purple) [![Platform](https://img.shields.io/badge/platform-api-blueviolet)](https://img.shields.io/badge/platform-api-blueviolet) [![License](https://img.shields.io/badge/license-MIT-lightgrey)](/LICENSE) [![CI](https://github.com/cassiofariasmachado/rockelivery/actions/workflows/ci.yml/badge.svg)](https://github.com/cassiofariasmachado/rockelivery/actions/workflows/ci.yml) [![codecov](https://codecov.io/gh/cassiofariasmachado/rockelivery/branch/main/graph/badge.svg?token=N7AWX8EHV5)](https://codecov.io/gh/cassiofariasmachado/rockelivery)
 
 Repository for my Rockelivery project of the Elixir's path from [Rocketseat Ignite](https://rocketseat.com.br).
 
