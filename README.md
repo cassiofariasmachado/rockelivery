@@ -49,6 +49,40 @@ gigalixir git:remote $APP_NAME
 git push gigalixir
 ```
 
+## :whale: Docker and compose
+
+For run app with Docker compose locally:
+
+* Set required env variables
+
+```powershell
+$env:SECRET_KEY_BASE="$(mix phx.gen.secret)"
+$env:DATABASE_URL="postgresql://postgres:postgres@db:5432/rockelivery"
+```
+
+> _SECRET_KEY_BASE_ should be defined at build time and at runtime for app works correctly, so it's used by _Dockerfile_ as a _build-arg_ and by _docker-compose_ as an environment variable
+
+* Run build
+
+```powershell
+docker-compose build --build-arg DB_URL="$env:DATABASE_URL" --build-arg SECRET="$env:SECRET_KEY_BASE"
+```
+
+* Run services
+
+```powershell
+docker-compose up
+```
+
+* Create and migrate database
+
+```powershell
+mix ecto.create
+mix ecto.migrate
+```
+
+> Only works cause postgres service is running locally and with the default port exposed to machine
+
 ## :page_facing_up: License
 
 * [MIT](/LICENSE.txt)

@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: .
+      args:
+        - DB_URL
+        - SECRET
+    image: rockelivery/api
+    ports:
+      - 4000:4000
+    environment:
+      - SECRET_KEY_BASE=${SECRET_KEY_BASE}
+
+  db:
+    image:  postgres:11
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=postgres
