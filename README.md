@@ -25,6 +25,30 @@ To run tests:
 * Run with `mix test --cover`
 * Run with `mix coveralls.html` to generate HTML report
 
+## :rocket: Deploy
+
+For manually deploy:
+
+* Install [Gigalixir CLI](https://gigalixir.readthedocs.io/en/latest/getting-started-guide.html#install-the-command-line-interface)
+
+* Set `APP_NAME` variable
+
+```powershell
+$env:APP_NAME=rockelivery
+```
+
+* Configure git remote
+
+```powershell
+gigalixir git:remote $APP_NAME
+```
+
+* Publish changes
+
+```powershell
+git push gigalixir
+```
+
 ## :page_facing_up: License
 
 * [MIT](/LICENSE.txt)
