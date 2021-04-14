@@ -34,13 +34,13 @@ For manually deploy:
 * Set `APP_NAME` variable
 
 ```powershell
-$env:APP_NAME=rockelivery
+$env:APP_NAME="gigalixir-app-name"
 ```
 
 * Configure git remote
 
 ```powershell
-gigalixir git:remote $APP_NAME
+gigalixir git:remote $env:APP_NAME
 ```
 
 * Publish changes
